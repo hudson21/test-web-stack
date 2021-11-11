@@ -4,12 +4,30 @@
   background: var(--white-color);
   border-radius: 8px;
   padding: 40px 32px;
-  transition: box-shadow 0.3s;
   margin-bottom: 64px;
+  transition: box-shadow 0.3s;
+  position: relative;
 }
 
 .card:hover {
   box-shadow: 2px 4px 10px -5px var(--black-color);
+}
+
+.card-actions {
+  position: absolute;
+  display: flex;
+  right: 23.61px;
+  top: 18.17px;
+  font-size: 20px;
+}
+
+.card-actions svg:first-child {
+  margin-right: 12px;
+  color: #979797;
+}
+
+.card-actions svg:last-child {
+  color: #c0392b;
 }
 
 .card img {

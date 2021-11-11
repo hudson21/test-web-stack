@@ -1,0 +1,23 @@
+.map-wrapper {
+  width: 518px;
+  height: 336px;
+  border-radius: 8px;
+  background: #ccc;
+  flex: 1;
+  margin-right: 60px;
+}
+
+.input-group {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  flex: 1;
+}
+
+.actions-wrapper {
+  margin-top: 64.5px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}

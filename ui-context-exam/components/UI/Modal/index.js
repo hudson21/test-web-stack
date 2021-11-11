@@ -3,6 +3,7 @@ import classes from './styled.module.css';
 
 const Modal = ({ modalStyle, children, show, onClose, backdropStyle }) => {
   const modalRef = useRef(null);
+
   useEffect(() => {
     if (show) {
       modalRef.current.classList.add(classes.visible);
@@ -10,6 +11,7 @@ const Modal = ({ modalStyle, children, show, onClose, backdropStyle }) => {
       modalRef.current.classList.remove(classes.visible);
     }
   }, [show]);
+
   return (
     <div onClick={onClose}>
       <div

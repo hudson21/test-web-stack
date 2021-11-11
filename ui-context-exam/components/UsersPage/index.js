@@ -4,6 +4,7 @@ import SearchInput from '../UI/Input';
 import CardList from '../UI/CardList';
 import Button from '../UI/Button';
 import Modal from '../UI/Modal';
+import EditUserForm from './Form/Edit';
 
 const DUMMY_DATA = [
   {
@@ -56,10 +57,20 @@ const UsersPage = () => {
     console.log('load more users');
   };
 
+  const updateUser = () => {
+    console.log('Update User');
+  };
+
   return (
     <div className="flex-column">
       <Modal show={show} onClose={() => setShow(false)}>
-        <div>Content of the Modal</div>
+        <EditUserForm
+          savedName=""
+          savedAddress=""
+          savedDescription=""
+          onCancel={() => setShow(false)}
+          onSubmit={updateUser}
+        />
       </Modal>
       <div className="flex-center" style={{ marginBottom: '64px' }}>
         <h1 className="heading">Users list</h1>
