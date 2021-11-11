@@ -1,54 +1,19 @@
 import Cors from 'micro-cors';
-import { gql, ApolloServer } from 'apollo-server-micro';
-import { connectDatabase, getAllDocuments } from '../../helpers/db';
+import { ApolloServer } from 'apollo-server-micro';
+import { connectDatabase } from '../../helpers/db';
 
-const typeDefs = gql`
-  type User {
-    id: ID!
-    name: String!
-    dob: String!
-    address: String!
-    description: String!
-    createdAt: String!
-    updatedAt: String!
-  }
-
-  type Query {
-    users(limit: Int = 6): [User!]!
-  }
-
-  type Mutation {
-    
-  }
-`;
-
-const resolvers = {
-  Query: {
-    users: async (_parent, args, _context) => {
-      const client = await connectDatabase();
-
-      const documents = await getAllDocuments(
-        client,
-        'users',
-        { _id: -1 }, // Descending Order
-        {},
-        args.limit
-      );
-
-      return documents;
-    },
-  },
-
-  User: {
-    id: (user, _args, _context) => user.id,
-  },
-};
+import { typeDefs } from '../../graphql/typeDefs';
+import { resolvers } from '../../graphql/resolvers';
 
 const cors = Cors();
 
 const apolloServer = new ApolloServer({
   typeDefs,
   resolvers,
+  context: async () => {
+    const client = await connectDatabase();
+    return { client };
+  },
 });
 
 const startApolloServer = apolloServer.start();
