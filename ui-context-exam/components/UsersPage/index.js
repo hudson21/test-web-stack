@@ -51,7 +51,33 @@ const DUMMY_DATA = [
 
 const UsersPage = () => {
   const [searchValue, setSearchValue] = useState('');
-  const [show, setShow] = useState(true);
+  const [showUpdateModal, setShowUpdateModal] = useState(false);
+  const [selectedUser, setSelectedUser] = useState({
+    savedName: '',
+    savedAddress: '',
+    savedDescription: '',
+  });
+
+  const openUpdateModal = (user) => {
+    setSelectedUser({
+      savedName: user.name,
+      savedAddress: user.address,
+      savedDescription: user.description,
+      ...user,
+    });
+    setShowUpdateModal(true);
+  };
+
+  const closeUpdateModal = () => {
+    setShowUpdateModal(false);
+    setTimeout(() => {
+      setSelectedUser({
+        savedName: '',
+        savedAddress: '',
+        savedDescription: '',
+      });
+    }, 500);
+  };
 
   const loadMoreUsers = () => {
     console.log('load more users');
@@ -63,16 +89,17 @@ const UsersPage = () => {
 
   return (
     <div className="flex-column">
-      <Modal show={show} onClose={() => setShow(false)}>
+      <Modal show={showUpdateModal} onClose={closeUpdateModal}>
         <EditUserForm
-          savedName=""
-          savedAddress=""
-          savedDescription=""
-          onCancel={() => setShow(false)}
+          savedUser={selectedUser}
+          onCancel={closeUpdateModal}
           onSubmit={updateUser}
         />
       </Modal>
-      <div className="flex-center" style={{ marginBottom: '64px' }}>
+      <div
+        className="flex-center"
+        style={{ marginBottom: '64px', flexWrap: 'wrap' }}
+      >
         <h1 className="heading">Users list</h1>
         <SearchInput
           placeholder="Search..."
@@ -80,7 +107,7 @@ const UsersPage = () => {
           value={searchValue}
         />
       </div>
-      <CardList users={DUMMY_DATA} />
+      <CardList users={DUMMY_DATA} openUpdateModal={openUpdateModal} />
       <Button value="Load More" isPrimary onClick={loadMoreUsers} />
     </div>
   );

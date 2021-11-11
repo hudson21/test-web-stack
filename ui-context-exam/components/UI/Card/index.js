@@ -4,12 +4,19 @@ import { FaPen, FaTrash } from 'react-icons/fa';
 
 import { BASE_UNSPLASH_URL } from '../../../constans';
 
-const Card = ({ id, name, description, createdAt }) => {
+const Card = ({
+  id,
+  name,
+  description,
+  createdAt,
+  openUpdateModal,
+  deleteUserHandler,
+}) => {
   return (
     <div className={`flex-column ${classes.card}`}>
       <div className={classes['card-actions']}>
-        <FaPen />
-        <FaTrash />
+        <FaPen onClick={openUpdateModal} />
+        <FaTrash onClick={deleteUserHandler} />
       </div>
       <img alt={`${name} image`} src={BASE_UNSPLASH_URL(id)} />
       <h2 className="sub-heading">{name}</h2>

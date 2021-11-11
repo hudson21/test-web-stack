@@ -1,20 +1,27 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 import Input from '../../../UI/Input';
 import Button from '../../../UI/Button';
 
 import classes from './styled.module.css';
 
-const EditUserForm = ({
-  savedName,
-  savedAddress,
-  savedDescription,
-  onCancel,
-  onSubmit,
-}) => {
-  const [name, setName] = useState(savedName || '');
-  const [address, setAddress] = useState(savedAddress || '');
-  const [description, setDescription] = useState(savedDescription || '');
+const EditUserForm = ({ savedUser, onCancel, onSubmit }) => {
+  const { savedName, savedAddress, savedDescription } = savedUser;
+  const [name, setName] = useState('');
+  const [address, setAddress] = useState('');
+  const [description, setDescription] = useState('');
+
+  useEffect(() => {
+    setName(savedName);
+  }, [savedName]);
+
+  useEffect(() => {
+    setAddress(savedAddress);
+  }, [savedAddress]);
+
+  useEffect(() => {
+    setDescription(savedDescription);
+  }, [savedDescription]);
 
   return (
     <>
