@@ -1,0 +1,80 @@
+@font-face {
+  font-family: 'SourceSansPro';
+  src: url('/fonts/Source_Sans_Pro/SourceSansPro-Light.ttf');
+  font-style: normal;
+  font-weight: 300;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'SourceSansPro';
+  src: url('/fonts/Source_Sans_Pro/SourceSansPro-Regular.ttf');
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'SourceSansPro';
+  src: url('/fonts/Source_Sans_Pro/SourceSansPro-Bold.ttf');
+  font-style: bold;
+  font-weight: 600;
+  font-display: swap;
+}
+
+* {
+  padding: 0;
+  margin: 0;
+  list-style-type: none;
+  text-decoration: none;
+  box-sizing: border-box;
+  outline: none;
+  font-family: SourceSansPro, sans-serif;
+  font-weight: 300;
+}
+
+:root {
+  /* General Colors */
+  --white-color: #fff;
+  --black-color: #000;
+  --body-color: #f8f8f8;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  padding: 183px 236px;
+  background: var(--body-color);
+}
+
+.flex-center {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.flex-column {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.heading {
+  font-size: 48px;
+  line-height: 60px;
+}
+
+.sub-heading {
+  font-weight: 600;
+  font-size: 21px;
+  line-height: 26px;
+}
+
+.description {
+  font-size: 16px;
+  line-height: 20px;
+}

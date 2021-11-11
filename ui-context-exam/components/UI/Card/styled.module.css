@@ -1,0 +1,36 @@
+.card {
+  width: 400px;
+  height: 336px;
+  background: var(--white-color);
+  border-radius: 8px;
+  padding: 40px 32px;
+  transition: box-shadow 0.3s;
+  margin-bottom: 64px;
+}
+
+.card:hover {
+  box-shadow: 2px 4px 10px -5px var(--black-color);
+}
+
+.card img {
+  width: 168px;
+  height: 168px;
+  border-radius: 50%;
+  margin-bottom: 32px;
+  border: 1px solid #979797;
+}
+
+.card h2 {
+  text-transform: uppercase;
+  margin-bottom: 8px;
+  align-self: flex-start;
+}
+
+.card p {
+  width: 336px;
+  height: 20px;
+  white-space: nowrap;
+  display: block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
