@@ -5,11 +5,14 @@ import CardList from '../UI/CardList';
 import Button from '../UI/Button';
 import Modal from '../UI/Modal';
 import EditUserForm from './Form/Edit';
+import CreateUserForm from './Form/Create';
+
+import { FaPlus } from 'react-icons/fa';
 
 const DUMMY_DATA = [
   {
     id: 1,
-    name: 'Carlos Hudson',
+    name: 'Carlos Hudson 1',
     dob: '12/23/1995',
     address: 'Address 1',
     description: `Lorem Ipsum is simply dummy text of
@@ -19,7 +22,7 @@ const DUMMY_DATA = [
   },
   {
     id: 2,
-    name: 'Carlos Hudson',
+    name: 'Carlos Hudson 2',
     dob: '12/23/1995',
     address: 'Address 1',
     description: `Lorem Ipsum is simply dummy text of
@@ -29,7 +32,7 @@ const DUMMY_DATA = [
   },
   {
     id: 3,
-    name: 'Carlos Hudson',
+    name: 'Carlos Hudson 3',
     dob: '12/23/1995',
     address: 'Address 1',
     description: `Lorem Ipsum is simply dummy text of
@@ -39,7 +42,7 @@ const DUMMY_DATA = [
   },
   {
     id: 4,
-    name: 'Carlos Hudson',
+    name: 'Carlos Hudson 4',
     dob: '12/23/1995',
     address: 'Address 1',
     description: `Lorem Ipsum is simply dummy text of
@@ -52,6 +55,7 @@ const DUMMY_DATA = [
 const UsersPage = () => {
   const [searchValue, setSearchValue] = useState('');
   const [showUpdateModal, setShowUpdateModal] = useState(false);
+  const [showCreateModal, setShowCreateModal] = useState(false);
   const [selectedUser, setSelectedUser] = useState({
     savedName: '',
     savedAddress: '',
@@ -79,6 +83,10 @@ const UsersPage = () => {
     }, 500);
   };
 
+  const deleteUserHandler = (userId) => {
+    console.log('delete', userId);
+  };
+
   const loadMoreUsers = () => {
     console.log('load more users');
   };
@@ -96,6 +104,9 @@ const UsersPage = () => {
           onSubmit={updateUser}
         />
       </Modal>
+      <Modal show={showCreateModal} onClose={() => setShowCreateModal(false)}>
+        <CreateUserForm />
+      </Modal>
       <div
         className="flex-center"
         style={{ marginBottom: '64px', flexWrap: 'wrap' }}
@@ -107,8 +118,16 @@ const UsersPage = () => {
           value={searchValue}
         />
       </div>
-      <CardList users={DUMMY_DATA} openUpdateModal={openUpdateModal} />
+      <CardList
+        users={DUMMY_DATA}
+        openUpdateModal={openUpdateModal}
+        deleteUserHandler={deleteUserHandler}
+      />
       <Button value="Load More" isPrimary onClick={loadMoreUsers} />
+
+      <div className="add-more-btn" onClick={() => setShowCreateModal(true)}>
+        <FaPlus />
+      </div>
     </div>
   );
 };
