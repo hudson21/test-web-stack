@@ -13,7 +13,7 @@ const Modal = ({ modalStyle, children, show, onClose, backdropStyle }) => {
   }, [show]);
 
   return (
-    <div>
+    <div onClick={onClose}>
       <div
         ref={modalRef}
         style={backdropStyle}

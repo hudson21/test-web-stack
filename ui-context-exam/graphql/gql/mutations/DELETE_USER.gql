@@ -1,0 +1,11 @@
+mutation Mutation($userId: String!) {
+  deleteUser(id: $userId) {
+    _id
+    address
+    description
+    dob
+    name
+    createdAt
+    updatedAt
+  }
+}

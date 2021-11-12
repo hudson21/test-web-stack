@@ -96,4 +96,5 @@ body {
 
 .add-more-btn svg {
   font-size: 20px;
+  cursor: pointer;
 }

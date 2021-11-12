@@ -1,0 +1,11 @@
+query Users($limit: Int!) {
+  users(limit: $limit) {
+    _id
+    address
+    description
+    dob
+    name
+    createdAt
+    updatedAt
+  }
+}
