@@ -5,6 +5,14 @@ module.exports = (phase) => {
   if (phase === PHASE_DEVELOPMENT_SERVER) {
     return {
       reactStrictMode: true,
+      async rewrites() {
+        return [
+          {
+            source: '/',
+            destination: '/1',
+          },
+        ];
+      },
       env: {
         MONGODB_USERNAME: 'hudson21',
         MONGODB_PASSWORD: 'xD6yVkQejkE3kTaG',
@@ -16,6 +24,14 @@ module.exports = (phase) => {
 
   return {
     reactStrictMode: true,
+    async rewrites() {
+      return [
+        {
+          source: '/',
+          destination: '/1',
+        },
+      ];
+    },
     env: {
       MONGODB_USERNAME: 'hudson21',
       MONGODB_PASSWORD: 'xD6yVkQejkE3kTaG',

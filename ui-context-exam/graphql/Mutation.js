@@ -1,4 +1,9 @@
-import { insertDocument, updateDocument, deleteDocument } from '../helpers/db';
+import {
+  insertDocument,
+  updateDocument,
+  deleteDocument,
+  getAllDocuments,
+} from '../helpers/db';
 import { ObjectId } from 'mongodb';
 
 export const Mutation = {
@@ -71,6 +76,7 @@ export const Mutation = {
 
       return updatedUser;
     } catch (e) {
+      console.log(e);
       throw new Error('User could not be updated.');
     }
   },

@@ -7,6 +7,9 @@ import Modal from '../UI/Modal';
 import EditUserForm from './Form/Edit';
 import CreateUserForm from './Form/Create';
 
+import {} from '@apollo/client';
+import client from '../../apollo-client';
+
 import { FaPlus } from 'react-icons/fa';
 
 const DUMMY_DATA = [
