@@ -14,7 +14,7 @@ import { CREATE_USER } from '../../graphql/gql/mutations/CREATE_USER';
 import { DELETE_USER } from '../../graphql/gql/mutations/DELETE_USER';
 import { UPDATE_USER } from '../../graphql/gql/mutations/UPDATE_USER';
 import { GET_USERS_LENGTH } from '../../graphql/gql/queries/GET_USERS_LENGTH';
-import { useQuery } from '@apollo/client';
+import { useQuery, useLazyQuery } from '@apollo/client';
 
 import { FaPlus } from 'react-icons/fa';
 
@@ -35,10 +35,36 @@ const UsersPage = () => {
     loading,
     error,
     data: getUserResponse,
+    refetch,
   } = useQuery(GET_USERS, {
     variables: { limit: id * 6 },
+    notifyOnNetworkStatusChange: true,
+    fetchPolicy: 'cache-and-network',
   });
   const { data: getUsersLengthResponse } = useQuery(GET_USERS_LENGTH);
+
+  useEffect(() => {
+    return () => {
+      handleScrollPosition();
+    };
+  }, []);
+
+  const handleScrollPosition = () => {
+    const scrollPosition = sessionStorage.getItem('scrollPosition');
+    if (scrollPosition) {
+      window.scrollTo(0, +scrollPosition);
+      sessionStorage.removeItem('scrollPosition');
+    }
+  };
+
+  const saveScrollPosition = () => {
+    sessionStorage.setItem('scrollPosition', window.pageYOffset);
+  };
+
+  const onSearchHandler = (value) => {
+    setSearchValue(value);
+    refetch({ limit: id * 6, filter: searchValue });
+  };
 
   const openUpdateModal = (user) => {
     setSelectedUser({
@@ -66,6 +92,7 @@ const UsersPage = () => {
   };
 
   const loadMoreUsers = () => {
+    saveScrollPosition();
     router.push(`/${+id + 1}`);
   };
 
@@ -92,12 +119,12 @@ const UsersPage = () => {
         <h1 className="heading">Users list</h1>
         <SearchInput
           placeholder="Search..."
-          onChange={setSearchValue}
+          onChange={onSearchHandler}
           value={searchValue}
         />
       </div>
 
-      {loading && !getUserResponse ? (
+      {loading ? (
         <div className="spinner-wrapper">
           <Spinner />
         </div>
@@ -110,7 +137,7 @@ const UsersPage = () => {
           />
 
           <Button
-            disabled={id * 6 >= getUsersLengthResponse.getUsersLength}
+            disabled={id * 6 >= getUsersLengthResponse?.getUsersLength}
             value="Load More"
             isPrimary
             onClick={loadMoreUsers}

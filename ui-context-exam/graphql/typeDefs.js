@@ -12,7 +12,7 @@ export const typeDefs = gql`
   }
 
   type Query {
-    users(limit: Int!): [User!]!
+    users(limit: Int!, filter: String): [User!]!
     getUsersLength: Int!
   }
 
