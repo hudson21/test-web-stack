@@ -16,7 +16,6 @@ import { DELETE_USER } from '../../graphql/gql/mutations/DELETE_USER';
 import { UPDATE_USER } from '../../graphql/gql/mutations/UPDATE_USER';
 import { GET_USERS_LENGTH } from '../../graphql/gql/queries/GET_USERS_LENGTH';
 import { useQuery, useMutation } from '@apollo/client';
-import client from '../../apollo-client';
 
 import { FaPlus } from 'react-icons/fa';
 
@@ -32,6 +31,7 @@ const UsersPage = () => {
     savedName: '',
     savedAddress: '',
     savedDescription: '',
+    dob: '',
   });
 
   const router = useRouter();
@@ -86,6 +86,7 @@ const UsersPage = () => {
       savedName: user.name,
       savedAddress: user.address,
       savedDescription: user.description,
+      savedDob: new Date(user.dob),
       ...user,
     });
     setShowUpdateModal(true);
@@ -98,6 +99,7 @@ const UsersPage = () => {
         savedName: '',
         savedAddress: '',
         savedDescription: '',
+        savedDob: '',
       });
     }, 500);
   };

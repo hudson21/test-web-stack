@@ -105,3 +105,31 @@ body {
   right: 50%;
   transform: translate(50%, -50%);
 }
+
+.label {
+  width: 165.22px;
+  height: 16px;
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 23px;
+  margin-bottom: 8px;
+  align-self: flex-start;
+}
+
+/* ------------------------------ React-Datepicker Override ------------------------------- */
+.react-datepicker-wrapper input {
+  width: 100%;
+  height: 64px;
+  border-radius: 8px;
+  background: var(--white-color);
+  padding: 16px;
+  font-size: 24px;
+  line-height: 30px;
+  color: rgba(0, 0, 0, 0.4);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.react-datepicker-wrapper input:focus {
+  color: var(--black-color);
+}
+/* ------------------------------ End React-Datepicker Override ------------------------------- */

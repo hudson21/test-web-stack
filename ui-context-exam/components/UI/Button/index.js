@@ -1,9 +1,9 @@
 import classes from './styled.module.css';
 
-const Button = ({ value, onClick, disabled, isPrimary, customStyles }) => {
+const Button = ({ value, onClick, disabled, isPrimary, customstyles }) => {
   return (
     <button
-      style={{ ...customStyles }}
+      style={{ ...customstyles }}
       className={`${classes.button} ${
         isPrimary ? classes['primary-button'] : classes['secondary-button']
       }`}

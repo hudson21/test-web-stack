@@ -1,22 +1,15 @@
 import classes from './styled.module.css';
 
-const Input = ({
-  onChange,
-  value,
-  placeholder,
-  label,
-  customStyles,
-  fullWidth,
-}) => {
+const Input = (props) => {
+  const { onChange, value, placeholder, label, customstyles, fullwidth } =
+    props;
   return (
-    <div
-      className={`flex-column ${classes['input-group']}`}
-      style={{ ...customStyles }}
-    >
-      {label && <label className={classes.label}>{label}</label>}
+    <div className="flex-column" style={{ ...customstyles }}>
+      {label && <label className="label">{label}</label>}
       <input
+        {...props}
         className={classes.input}
-        style={{ width: fullWidth ? '100%' : '' }}
+        style={{ width: fullwidth ? '100%' : '' }}
         onChange={(e) => onChange(e.target.value)}
         value={value}
         placeholder={placeholder}

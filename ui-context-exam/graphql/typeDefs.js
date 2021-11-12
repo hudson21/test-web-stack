@@ -31,6 +31,7 @@ export const typeDefs = gql`
 
   input UpdateUserInput {
     name: String
+    dob: String
     address: String
     description: String
   }

@@ -2,14 +2,16 @@ import { useState, useEffect } from 'react';
 
 import Input from '../../../UI/Input';
 import Button from '../../../UI/Button';
+import DateInput from '../../../UI/DateInput';
 
 import classes from './styled.module.css';
 
 const EditUserForm = ({ savedUser, onCancel, onSubmit }) => {
-  const { savedName, savedAddress, savedDescription } = savedUser;
+  const { savedName, savedAddress, savedDescription, savedDob } = savedUser;
   const [name, setName] = useState('');
   const [address, setAddress] = useState('');
   const [description, setDescription] = useState('');
+  const [dob, setDob] = useState('');
 
   useEffect(() => {
     setName(savedName);
@@ -23,6 +25,10 @@ const EditUserForm = ({ savedUser, onCancel, onSubmit }) => {
     setDescription(savedDescription);
   }, [savedDescription]);
 
+  useEffect(() => {
+    setDob(savedDob);
+  }, [savedDob]);
+
   const updateUserHandler = () => {
     onSubmit({
       variables: {
@@ -31,6 +37,7 @@ const EditUserForm = ({ savedUser, onCancel, onSubmit }) => {
           name,
           description,
           address,
+          dob,
         },
       },
     });
@@ -47,22 +54,39 @@ const EditUserForm = ({ savedUser, onCancel, onSubmit }) => {
             label="Name"
             value={name}
             onChange={setName}
-            fullWidth
-            customStyles={{ marginBottom: '36px', width: '100%' }}
+            fullwidth="true"
+            customstyles={{ marginBottom: '36px', width: '100%' }}
           />
+
+          <DateInput
+            selected={dob}
+            label="DOB"
+            onChange={setDob}
+            maxDate={Date.now()}
+            customstyles={{
+              marginBottom: '36px',
+              width: '100%',
+            }}
+            peekNextMonth
+            showMonthDropdown
+            showYearDropdown
+            dropdownMode="select"
+          />
+
           <Input
             label="Location"
             value={address}
             onChange={setAddress}
-            fullWidth
-            customStyles={{ marginBottom: '36px', width: '100%' }}
+            fullwidth="true"
+            customstyles={{ marginBottom: '36px', width: '100%' }}
           />
+
           <Input
             label="Description"
             value={description}
             onChange={setDescription}
-            fullWidth
-            customStyles={{ width: '100%' }}
+            fullwidth="true"
+            customstyles={{ width: '100%' }}
           />
         </div>
       </div>
@@ -71,7 +95,7 @@ const EditUserForm = ({ savedUser, onCancel, onSubmit }) => {
           isPrimary
           value="Save"
           onClick={updateUserHandler}
-          customStyles={{ marginRight: '62px' }}
+          customstyles={{ marginRight: '62px' }}
         />
         <Button value="Cancel" onClick={onCancel} />
       </div>
