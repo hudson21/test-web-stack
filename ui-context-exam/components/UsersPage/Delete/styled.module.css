@@ -1,0 +1,14 @@
+.question {
+  margin-bottom: 25px;
+  font-size: 35px;
+}
+
+.button-actions-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.button-actions-wrapper button:first-child {
+  margin-right: 40px;
+}

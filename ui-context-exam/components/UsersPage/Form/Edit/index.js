@@ -23,6 +23,20 @@ const EditUserForm = ({ savedUser, onCancel, onSubmit }) => {
     setDescription(savedDescription);
   }, [savedDescription]);
 
+  const updateUserHandler = () => {
+    onSubmit({
+      variables: {
+        updateUserId: savedUser._id.toString(),
+        data: {
+          name,
+          description,
+          address,
+        },
+      },
+    });
+    onCancel();
+  };
+
   return (
     <>
       <h1 className="heading">Edit user</h1>
@@ -56,7 +70,7 @@ const EditUserForm = ({ savedUser, onCancel, onSubmit }) => {
         <Button
           isPrimary
           value="Save"
-          onClick={onSubmit}
+          onClick={updateUserHandler}
           customStyles={{ marginRight: '62px' }}
         />
         <Button value="Cancel" onClick={onCancel} />

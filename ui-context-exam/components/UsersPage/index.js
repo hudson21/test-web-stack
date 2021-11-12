@@ -7,6 +7,7 @@ import Button from '../UI/Button';
 import Modal from '../UI/Modal';
 import EditUserForm from './Form/Edit';
 import CreateUserForm from './Form/Create';
+import DeleteUserForm from './Delete';
 import Spinner from '../UI/Spinner';
 
 import { GET_USERS } from '../../graphql/gql/queries/GET_USERS';
@@ -14,7 +15,8 @@ import { CREATE_USER } from '../../graphql/gql/mutations/CREATE_USER';
 import { DELETE_USER } from '../../graphql/gql/mutations/DELETE_USER';
 import { UPDATE_USER } from '../../graphql/gql/mutations/UPDATE_USER';
 import { GET_USERS_LENGTH } from '../../graphql/gql/queries/GET_USERS_LENGTH';
-import { useQuery, useLazyQuery } from '@apollo/client';
+import { useQuery, useMutation } from '@apollo/client';
+import client from '../../apollo-client';
 
 import { FaPlus } from 'react-icons/fa';
 
@@ -22,6 +24,10 @@ const UsersPage = () => {
   const [searchValue, setSearchValue] = useState('');
   const [showUpdateModal, setShowUpdateModal] = useState(false);
   const [showCreateModal, setShowCreateModal] = useState(false);
+  const [showDeleteModal, setShowDeleteModal] = useState(false);
+
+  const [userToDelete, setUserToDelete] = useState(null);
+
   const [selectedUser, setSelectedUser] = useState({
     savedName: '',
     savedAddress: '',
@@ -42,6 +48,12 @@ const UsersPage = () => {
     fetchPolicy: 'cache-and-network',
   });
   const { data: getUsersLengthResponse } = useQuery(GET_USERS_LENGTH);
+  const [deleteUser] = useMutation(DELETE_USER, {
+    refetchQueries: [GET_USERS],
+  });
+  const [updateUser] = useMutation(UPDATE_USER, {
+    refetchQueries: [GET_USERS],
+  });
 
   useEffect(() => {
     return () => {
@@ -87,17 +99,26 @@ const UsersPage = () => {
     }, 500);
   };
 
-  const deleteUserHandler = (userId) => {
-    console.log('delete', userId);
+  const openDeleteUserModal = (userId) => {
+    setShowDeleteModal(true);
+    setUserToDelete(userId);
+  };
+
+  const closeDeleteUserModal = () => {
+    setShowDeleteModal(false);
+    setUserToDelete(null);
+  };
+
+  const deleteUserHandler = () => {
+    deleteUser({ variables: { userId: userToDelete } });
+    setShowDeleteModal(false);
+    setUserToDelete(null);
+    saveScrollPosition();
   };
 
   const loadMoreUsers = () => {
     saveScrollPosition();
     router.push(`/${+id + 1}`);
-  };
-
-  const updateUser = () => {
-    console.log('Update User');
   };
 
   return (
@@ -111,6 +132,16 @@ const UsersPage = () => {
       </Modal>
       <Modal show={showCreateModal} onClose={() => setShowCreateModal(false)}>
         <CreateUserForm />
+      </Modal>
+      <Modal
+        show={showDeleteModal}
+        onClose={() => setShowDeleteModal(false)}
+        modalStyle={{ width: '800px' }}
+      >
+        <DeleteUserForm
+          onCancel={closeDeleteUserModal}
+          onDelete={deleteUserHandler}
+        />
       </Modal>
       <div
         className="flex-center"
@@ -133,7 +164,7 @@ const UsersPage = () => {
           <CardList
             users={getUserResponse.users}
             openUpdateModal={openUpdateModal}
-            deleteUserHandler={deleteUserHandler}
+            deleteUserHandler={openDeleteUserModal}
           />
 
           <Button
