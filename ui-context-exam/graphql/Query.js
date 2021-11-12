@@ -15,4 +15,14 @@ export const Query = {
       throw new Error('Users could not be found.');
     }
   },
+  getUsersLength: async (_parent, { limit }, { client }) => {
+    try {
+      const db = client.db();
+      const documents = await db.collection('users').find().toArray();
+
+      return documents.length;
+    } catch (e) {
+      throw new Error('Users could not be found.');
+    }
+  },
 };

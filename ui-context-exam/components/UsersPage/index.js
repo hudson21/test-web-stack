@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 
 import SearchInput from '../UI/Input';
@@ -13,52 +13,10 @@ import { GET_USERS } from '../../graphql/gql/queries/GET_USERS';
 import { CREATE_USER } from '../../graphql/gql/mutations/CREATE_USER';
 import { DELETE_USER } from '../../graphql/gql/mutations/DELETE_USER';
 import { UPDATE_USER } from '../../graphql/gql/mutations/UPDATE_USER';
+import { GET_USERS_LENGTH } from '../../graphql/gql/queries/GET_USERS_LENGTH';
 import { useQuery } from '@apollo/client';
 
 import { FaPlus } from 'react-icons/fa';
-
-const DUMMY_DATA = [
-  {
-    id: 1,
-    name: 'Carlos Hudson 1',
-    dob: '12/23/1995',
-    address: 'Address 1',
-    description: `Lorem Ipsum is simply dummy text of
-    the printing and typesetting industry.`,
-    createdAt: '11/05/2021',
-    updatedAt: '11/05/2021',
-  },
-  {
-    id: 2,
-    name: 'Carlos Hudson 2',
-    dob: '12/23/1995',
-    address: 'Address 1',
-    description: `Lorem Ipsum is simply dummy text of
-    the printing and typesetting industry.`,
-    createdAt: '11/05/2021',
-    updatedAt: '11/05/2021',
-  },
-  {
-    id: 3,
-    name: 'Carlos Hudson 3',
-    dob: '12/23/1995',
-    address: 'Address 1',
-    description: `Lorem Ipsum is simply dummy text of
-    the printing and typesetting industry.`,
-    createdAt: '11/05/2021',
-    updatedAt: '11/05/2021',
-  },
-  {
-    id: 4,
-    name: 'Carlos Hudson 4',
-    dob: '12/23/1995',
-    address: 'Address 1',
-    description: `Lorem Ipsum is simply dummy text of
-    the printing and typesetting industry.`,
-    createdAt: '11/05/2021',
-    updatedAt: '11/05/2021',
-  },
-];
 
 const UsersPage = () => {
   const [searchValue, setSearchValue] = useState('');
@@ -69,6 +27,7 @@ const UsersPage = () => {
     savedAddress: '',
     savedDescription: '',
   });
+
   const router = useRouter();
   const id = router.query.id;
 
@@ -79,6 +38,7 @@ const UsersPage = () => {
   } = useQuery(GET_USERS, {
     variables: { limit: id * 6 },
   });
+  const { data: getUsersLengthResponse } = useQuery(GET_USERS_LENGTH);
 
   const openUpdateModal = (user) => {
     setSelectedUser({
@@ -149,7 +109,12 @@ const UsersPage = () => {
             deleteUserHandler={deleteUserHandler}
           />
 
-          <Button value="Load More" isPrimary onClick={loadMoreUsers} />
+          <Button
+            disabled={id * 6 >= getUsersLengthResponse.getUsersLength}
+            value="Load More"
+            isPrimary
+            onClick={loadMoreUsers}
+          />
           <div
             className="add-more-btn"
             onClick={() => setShowCreateModal(true)}

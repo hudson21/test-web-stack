@@ -13,6 +13,7 @@ export const typeDefs = gql`
 
   type Query {
     users(limit: Int!): [User!]!
+    getUsersLength: Int!
   }
 
   type Mutation {
