@@ -54,6 +54,9 @@ const UsersPage = () => {
   const [updateUser] = useMutation(UPDATE_USER, {
     refetchQueries: [GET_USERS],
   });
+  const [createUser] = useMutation(CREATE_USER, {
+    refetchQueries: [GET_USERS],
+  });
 
   useEffect(() => {
     return () => {
@@ -130,8 +133,15 @@ const UsersPage = () => {
           onSubmit={updateUser}
         />
       </Modal>
-      <Modal show={showCreateModal} onClose={() => setShowCreateModal(false)}>
-        <CreateUserForm />
+      <Modal
+        modalStyle={{ width: '1280px' }}
+        show={showCreateModal}
+        onClose={() => setShowCreateModal(false)}
+      >
+        <CreateUserForm
+          onCancel={() => setShowCreateModal(false)}
+          onSubmit={createUser}
+        />
       </Modal>
       <Modal
         show={showDeleteModal}

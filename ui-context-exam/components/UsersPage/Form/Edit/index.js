@@ -51,7 +51,7 @@ const EditUserForm = ({ savedUser, onCancel, onSubmit }) => {
             customStyles={{ marginBottom: '36px', width: '100%' }}
           />
           <Input
-            label="Address"
+            label="Location"
             value={address}
             onChange={setAddress}
             fullWidth
