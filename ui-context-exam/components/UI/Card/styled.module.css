@@ -5,12 +5,13 @@
   border-radius: 8px;
   padding: 40px 32px;
   margin-bottom: 64px;
-  transition: box-shadow 0.3s;
   position: relative;
+  transition: box-shadow 0.3s, transform 0.4s;
 }
 
 .card:hover {
   box-shadow: 2px 4px 10px -5px var(--black-color);
+  transform: translateY(-15px);
 }
 
 .card-actions {
@@ -26,7 +27,7 @@
   color: #979797;
 }
 
-.card-actions svg:last-child {  
+.card-actions svg:last-child {
   color: #c0392b;
 }
 
