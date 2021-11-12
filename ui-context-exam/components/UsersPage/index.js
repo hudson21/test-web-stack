@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useRouter } from 'next/router';
 
 import SearchInput from '../UI/Input';
 import CardList from '../UI/CardList';
@@ -6,9 +7,13 @@ import Button from '../UI/Button';
 import Modal from '../UI/Modal';
 import EditUserForm from './Form/Edit';
 import CreateUserForm from './Form/Create';
+import Spinner from '../UI/Spinner';
 
-import {} from '@apollo/client';
-import client from '../../apollo-client';
+import { GET_USERS } from '../../graphql/gql/queries/GET_USERS';
+import { CREATE_USER } from '../../graphql/gql/mutations/CREATE_USER';
+import { DELETE_USER } from '../../graphql/gql/mutations/DELETE_USER';
+import { UPDATE_USER } from '../../graphql/gql/mutations/UPDATE_USER';
+import { useQuery } from '@apollo/client';
 
 import { FaPlus } from 'react-icons/fa';
 
@@ -64,6 +69,16 @@ const UsersPage = () => {
     savedAddress: '',
     savedDescription: '',
   });
+  const router = useRouter();
+  const id = router.query.id;
+
+  const {
+    loading,
+    error,
+    data: getUserResponse,
+  } = useQuery(GET_USERS, {
+    variables: { limit: id * 6 },
+  });
 
   const openUpdateModal = (user) => {
     setSelectedUser({
@@ -91,7 +106,7 @@ const UsersPage = () => {
   };
 
   const loadMoreUsers = () => {
-    console.log('load more users');
+    router.push(`/${+id + 1}`);
   };
 
   const updateUser = () => {
@@ -121,16 +136,28 @@ const UsersPage = () => {
           value={searchValue}
         />
       </div>
-      <CardList
-        users={DUMMY_DATA}
-        openUpdateModal={openUpdateModal}
-        deleteUserHandler={deleteUserHandler}
-      />
-      <Button value="Load More" isPrimary onClick={loadMoreUsers} />
 
-      <div className="add-more-btn" onClick={() => setShowCreateModal(true)}>
-        <FaPlus />
-      </div>
+      {loading && !getUserResponse ? (
+        <div className="spinner-wrapper">
+          <Spinner />
+        </div>
+      ) : (
+        <>
+          <CardList
+            users={getUserResponse.users}
+            openUpdateModal={openUpdateModal}
+            deleteUserHandler={deleteUserHandler}
+          />
+
+          <Button value="Load More" isPrimary onClick={loadMoreUsers} />
+          <div
+            className="add-more-btn"
+            onClick={() => setShowCreateModal(true)}
+          >
+            <FaPlus />
+          </div>
+        </>
+      )}
     </div>
   );
 };

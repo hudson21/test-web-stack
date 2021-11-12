@@ -5,9 +5,9 @@ const CardList = ({ users, openUpdateModal, deleteUserHandler }) => {
     <div className="flex-center" style={{ flexWrap: 'wrap' }}>
       {users.map((user) => (
         <Card
-          key={user.id}
+          key={user._id}
           openUpdateModal={() => openUpdateModal(user)}
-          deleteUserHandler={() => deleteUserHandler(user.id)}
+          deleteUserHandler={() => deleteUserHandler(user._id)}
           {...user}
         />
       ))}

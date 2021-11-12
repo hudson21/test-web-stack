@@ -5,7 +5,7 @@ import { FaPen, FaTrash } from 'react-icons/fa';
 import { BASE_UNSPLASH_URL } from '../../../constans';
 
 const Card = ({
-  id,
+  _id,
   name,
   description,
   createdAt,
@@ -18,7 +18,7 @@ const Card = ({
         <FaPen onClick={openUpdateModal} />
         <FaTrash onClick={deleteUserHandler} />
       </div>
-      <img alt={`${name} image`} src={BASE_UNSPLASH_URL(id)} />
+      <img alt={`${name} image`} src={BASE_UNSPLASH_URL(_id)} />
       <h2 className="sub-heading">{name}</h2>
       <p className="description">{description}</p>
     </div>
