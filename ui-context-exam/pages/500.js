@@ -14,13 +14,15 @@ const ErrorPage = () => {
       </h1>
 
       <Link href="/1">
-        <h1 className="heading">Please go to the Home page</h1>
+        <h1 className="heading" style={{ cursor: 'pointer' }}>
+          Please go to the Home page
+        </h1>
       </Link>
 
       <Link href="/1">
         <FaUndoAlt
           size={65}
-          style={{ marginTop: '30px' }}
+          style={{ marginTop: '30px', cursor: 'pointer' }}
           color={'var(--red-color)'}
         />
       </Link>

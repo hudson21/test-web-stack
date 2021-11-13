@@ -18,7 +18,11 @@ const NotFoundPage = () => {
       <Link href="/1">
         <h1
           className="heading"
-          style={{ color: 'var(--black-color)', marginTop: '10px' }}
+          style={{
+            color: 'var(--black-color)',
+            marginTop: '10px',
+            cursor: 'pointer',
+          }}
         >
           Click here to go to the Home page
         </h1>
@@ -27,7 +31,11 @@ const NotFoundPage = () => {
       <Link href="/1">
         <FaRocket
           size={65}
-          style={{ marginTop: '30px', color: 'var(--black-color)' }}
+          style={{
+            marginTop: '30px',
+            color: 'var(--black-color)',
+            cursor: 'pointer',
+          }}
         />
       </Link>
     </div>

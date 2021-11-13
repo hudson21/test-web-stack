@@ -67,6 +67,9 @@ In an application there will be always optimization opportunities to get you app
 1. Using `Image` tag to render your images. This is a helper from the next.js library that can receive a variety of props to get different responses when you want a full-responsive application.
 2. Another great advantage of this framework can be to use different ways of rendering `Static Generation or Server Side Rendering`
 3. The optimization opportunities are not only to server third-party resources you have on your application. It also means to manage a great architecture inside of your application. How you have your logic splitted among the different views and components
+4. If you are interacting with a database, there is always room for query optimizations. Find out strategies to speed the performance of your queries.
+5. In the case of the client side, there is always the possibility to use React Context to avoid `prop chaining` or use `Redux` if you have an application you think will get bigger in the future.
+6. Another feature which could be beneficial if you have a big app is `Lazy Loading`. When you have different views, you dont need to load them all at once. You can implement `Lazy Loading` to load every page according to the end user needs.
 
 
 
