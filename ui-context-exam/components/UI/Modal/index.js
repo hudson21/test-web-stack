@@ -1,4 +1,6 @@
 import React, { useEffect, useRef } from 'react';
+import PropTypes from 'prop-types';
+
 import classes from './styled.module.css';
 
 const Modal = ({ modalStyle, children, show, onClose, backdropStyle }) => {
@@ -25,6 +27,17 @@ const Modal = ({ modalStyle, children, show, onClose, backdropStyle }) => {
       </div>
     </div>
   );
+};
+
+Modal.propTypes = {
+  modalStyle: PropTypes.object,
+  children: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.node),
+    PropTypes.node,
+  ]).isRequired,
+  show: PropTypes.bool,
+  onClose: PropTypes.func,
+  backdropStyle: PropTypes.object,
 };
 
 export default Modal;

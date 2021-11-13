@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import PropTypes from 'prop-types';
 import { MapContainer, TileLayer, Marker, Popup, useMap } from 'react-leaflet';
 import * as ELG from 'esri-leaflet-geocoder';
 import 'leaflet/dist/leaflet.css';
@@ -7,7 +8,7 @@ import 'leaflet-defaulticon-compatibility';
 
 import classes from './styled.module.css';
 
-const Map = ({ className, address, ...rest }) => {
+const Map = ({ address }) => {
   const position = [53.35, 18.8];
   const [latValue, setLatValue] = useState('');
   const [lngValue, setLngValue] = useState('');
@@ -28,7 +29,7 @@ const Map = ({ className, address, ...rest }) => {
   }
 
   return (
-    <MapContainer zoom={15} center={position} className={classes.map} {...rest}>
+    <MapContainer zoom={15} center={position} className={classes.map}>
       <TileLayer
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
@@ -41,6 +42,10 @@ const Map = ({ className, address, ...rest }) => {
       </Marker>
     </MapContainer>
   );
+};
+
+Map.propTypes = {
+  address: PropTypes.string,
 };
 
 export default Map;

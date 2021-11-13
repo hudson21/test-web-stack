@@ -9,6 +9,7 @@ import EditUserForm from './Form/Edit';
 import CreateUserForm from './Form/Create';
 import DeleteUserForm from './Delete';
 import Spinner from '../UI/Spinner';
+import ErrorPage from '../../pages/500';
 
 import { GET_USERS } from '../../graphql/gql/queries/GET_USERS';
 import { CREATE_USER } from '../../graphql/gql/mutations/CREATE_USER';
@@ -39,7 +40,7 @@ const UsersPage = () => {
 
   const {
     loading,
-    error,
+    error: getUsersError,
     data: getUserResponse,
     refetch,
   } = useQuery(GET_USERS, {
@@ -47,14 +48,16 @@ const UsersPage = () => {
     notifyOnNetworkStatusChange: true,
     fetchPolicy: 'cache-and-network',
   });
-  const { data: getUsersLengthResponse } = useQuery(GET_USERS_LENGTH);
-  const [deleteUser] = useMutation(DELETE_USER, {
+  const { data: getUsersLengthResponse, error: getUsersLengthError } = useQuery(
+    GET_USERS_LENGTH
+  );
+  const [deleteUser, { error: deleteUserError }] = useMutation(DELETE_USER, {
     refetchQueries: [GET_USERS],
   });
-  const [updateUser] = useMutation(UPDATE_USER, {
+  const [updateUser, { error: updateUserError }] = useMutation(UPDATE_USER, {
     refetchQueries: [GET_USERS],
   });
-  const [createUser] = useMutation(CREATE_USER, {
+  const [createUser, { error: createUserError }] = useMutation(CREATE_USER, {
     refetchQueries: [GET_USERS],
   });
 
@@ -125,6 +128,16 @@ const UsersPage = () => {
     saveScrollPosition();
     router.push(`/${+id + 1}`);
   };
+
+  if (
+    getUsersError ||
+    getUsersLengthError ||
+    deleteUserError ||
+    updateUserError ||
+    createUserError
+  ) {
+    return <ErrorPage />;
+  }
 
   return (
     <div className="flex-column">

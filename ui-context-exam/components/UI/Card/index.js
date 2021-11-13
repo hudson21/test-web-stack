@@ -1,8 +1,9 @@
+import PropTypes from 'prop-types';
+
 import classes from './styled.module.css';
 
 import { FaPen, FaTrash } from 'react-icons/fa';
-
-import { BASE_UNSPLASH_URL } from '../../../constans';
+import Avatar from '../Avatar';
 
 const Card = ({
   _id,
@@ -20,7 +21,7 @@ const Card = ({
         <FaPen onClick={openUpdateModal} />
         <FaTrash onClick={deleteUserHandler} />
       </div>
-      <img alt={`${name} image`} src={BASE_UNSPLASH_URL(_id)} />
+      <Avatar name={name} id={_id} />
       <div
         style={{
           width: '100%',
@@ -37,6 +38,15 @@ const Card = ({
       <p className="description">{description}</p>
     </div>
   );
+};
+
+Card.propTypes = {
+  _id: PropTypes.string,
+  name: PropTypes.string,
+  description: PropTypes.string,
+  createdAt: PropTypes.string,
+  openUpdateModal: PropTypes.func,
+  deleteUserHandler: PropTypes.func,
 };
 
 export default Card;

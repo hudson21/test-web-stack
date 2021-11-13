@@ -1,7 +1,9 @@
-import Link from 'next/link';
+import { useRouter } from 'next/router';
 import { FaUndoAlt, FaCarCrash } from 'react-icons/fa';
 
 const ErrorPage = () => {
+  const router = useRouter();
+
   return (
     <div className="flex-column" style={{ height: '65vh', width: '100%' }}>
       <FaCarCrash
@@ -13,19 +15,21 @@ const ErrorPage = () => {
         Something went wrong.
       </h1>
 
-      <Link href="/1">
-        <h1 className="heading" style={{ cursor: 'pointer' }}>
-          Please go to the Home page
-        </h1>
-      </Link>
+      <h1
+        onClick={() => router.reload(window.location.pathname)}
+        on
+        className="heading"
+        style={{ cursor: 'pointer' }}
+      >
+        Please go to the Home page
+      </h1>
 
-      <Link href="/1">
-        <FaUndoAlt
-          size={65}
-          style={{ marginTop: '30px', cursor: 'pointer' }}
-          color={'var(--red-color)'}
-        />
-      </Link>
+      <FaUndoAlt
+        onClick={() => router.reload(window.location.pathname)}
+        size={65}
+        style={{ marginTop: '30px', cursor: 'pointer' }}
+        color={'var(--red-color)'}
+      />
     </div>
   );
 };
