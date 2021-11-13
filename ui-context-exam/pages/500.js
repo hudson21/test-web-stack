@@ -1,20 +1,29 @@
 import Link from 'next/link';
-import { FaUndoAlt } from 'react-icons/fa';
+import { FaUndoAlt, FaCarCrash } from 'react-icons/fa';
 
 const ErrorPage = () => {
   return (
     <div className="flex-column" style={{ height: '65vh', width: '100%' }}>
-      <h1 className="heading">
-        Something went wrong. Please{' '}
-        <Link href="/1" style={{ color: 'var(--red-color)' }}>
-          reload the page
-        </Link>
-      </h1>
-      <FaUndoAlt
+      <FaCarCrash
         size={65}
-        style={{ marginTop: '30px' }}
-        color={'var(--red-color)'}
+        style={{ marginBottom: '30px', color: 'var(--red-color)' }}
       />
+
+      <h1 className="heading" style={{ color: 'var(--red-color)' }}>
+        Something went wrong.
+      </h1>
+
+      <Link href="/1">
+        <h1 className="heading">Please go to the Home page</h1>
+      </Link>
+
+      <Link href="/1">
+        <FaUndoAlt
+          size={65}
+          style={{ marginTop: '30px' }}
+          color={'var(--red-color)'}
+        />
+      </Link>
     </div>
   );
 };

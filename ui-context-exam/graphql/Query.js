@@ -10,7 +10,7 @@ export const Query = {
         {},
         limit
       );
-
+        
       if (filter) {
         return documents.filter(({ _id, name, address, description }) => {
           const transformedFilter = filter.toLowerCase();
