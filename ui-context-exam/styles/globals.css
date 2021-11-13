@@ -95,9 +95,12 @@ body {
   align-items: center;
 }
 
+.add-more-btn {
+  cursor: pointer;
+}
+
 .add-more-btn svg {
   font-size: 20px;
-  cursor: pointer;
 }
 
 .spinner-wrapper {

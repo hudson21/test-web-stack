@@ -18,6 +18,7 @@ module.exports = (phase) => {
         MONGODB_PASSWORD: 'xD6yVkQejkE3kTaG',
         MONGODB_CLUSTER_NAME: 'cluster0',
         MONGODB_DATABASE_NAME: 'superformula-exam-dev',
+        GRAPHQL_URL: 'http://localhost:3000/api/graphql',
       },
     };
   }
@@ -37,6 +38,8 @@ module.exports = (phase) => {
       MONGODB_PASSWORD: 'xD6yVkQejkE3kTaG',
       MONGODB_CLUSTER_NAME: 'cluster0',
       MONGODB_DATABASE_NAME: 'superformula-exam-production',
+      GRAPHQL_URL:
+        'https://carlos-hudson-superformula-exam.vercel.app/api/graphql',
     },
   };
 };

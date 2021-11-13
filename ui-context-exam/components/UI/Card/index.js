@@ -29,7 +29,9 @@ const Card = ({
           alignContent: 'space-between',
         }}
       >
-        <h2 className="sub-heading">{name}</h2>
+        <h2 className="sub-heading" data-test="sub-heading-card">
+          {name}
+        </h2>
         <p className={classes['date']}>
           created <span>{transformedDate.toDateString()}</span>
         </p>

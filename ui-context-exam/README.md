@@ -15,6 +15,14 @@ npm run dev
 # or
 yarn dev
 ```
+
+## Storybook
+
+If you want to see the components declared on Storybook run the following command:
+```bash
+npm run storybook
+```
+
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
 ## How the App was designed (Client)
