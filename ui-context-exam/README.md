@@ -47,7 +47,26 @@ This application is developed on Next.js environment and uses global style class
   ....
 }
 ```
-- Another workaround that works really great with responsiveness are the measurements you are using on your UI elements. If you use `rem` as your measurement
+- Another workaround that works really great with responsiveness are the measurements you are using on your UI elements. If you use `rem` as your measurement and you are handling `percentages for the font-size property inside of html tag` you can increase or decrese the font-size according to the resolution you have in your screen to have an adaptable UI on all screen sizes. An example of this can be the following code
+```
+
+html {
+  font-size: 62.5%
+}
+```
+`1rem = 16px` therefore if the font-size has decreased to `62.5%` it means the value is `10px`
+- These aspects are related to the UI side. There could be some other factors which are more related with app features and `User Experience(UX)` like:
+    1. Have search options: This allows the user to have up to date data records which he cares about.
+    2. Optimization of your resources: This point is related to manipulate different resolutions for the different third party files you are serving in your application `(eg. Fonts, images, CSS styles, JavaScript Files ...)`. An application which does not need to load too much resources is a faster app than the opposite scenario. There are always compressers for these type of situations that will definitely be your best ally.
+- You can also take advantage of `CSS Native tools` like `flexbox or css-grid` to manage responsiveness on your applications
+
+There are other factors to take on mind but I think if you cover the previous ones, you are on the right path ✔️.
+
+## Optimization Opportunities
+In an application there will be always optimization opportunities to get you application faster and better at the metrics for loading performance. Since this is an application based on `Next.js Framework` you can guess there is a `build` command to generate a build version which is a minified version of your project that is production-ready to be hosted on any hostin provider of your choice. In the case of `Next.js` ecosystem a great helper to achieve a great optimization can be:
+1. Using `Image` tag to render your images. This is a helper from the next.js library that can receive a variety of props to get different responses when you want a full-responsive application.
+2. Another great advantage of this framework can be to use different ways of rendering `Static Generation or Server Side Rendering`
+3. The optimization opportunities are not only to server third-party resources you have on your application. It also means to manage a great architecture inside of your application. How you have your logic splitted among the different views and components
 
 
 

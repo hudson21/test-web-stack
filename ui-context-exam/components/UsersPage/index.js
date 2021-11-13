@@ -43,7 +43,7 @@ const UsersPage = () => {
     data: getUserResponse,
     refetch,
   } = useQuery(GET_USERS, {
-    variables: { limit: id * 6 },
+    variables: { limit: id ? id * 6 : 1 * 6 },
     notifyOnNetworkStatusChange: true,
     fetchPolicy: 'cache-and-network',
   });

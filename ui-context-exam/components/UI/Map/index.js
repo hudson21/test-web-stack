@@ -36,7 +36,7 @@ const Map = ({ className, address, ...rest }) => {
 
       <Geocoder address={address} />
 
-      <Marker position={[latValue, lngValue]} draggable={true} animate={true}>
+      <Marker position={[latValue, lngValue]} animate={true}>
         <Popup>This is my address :D</Popup>
       </Marker>
     </MapContainer>
