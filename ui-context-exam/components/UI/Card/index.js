@@ -21,7 +21,13 @@ const Card = ({
         <FaTrash onClick={deleteUserHandler} />
       </div>
       <img alt={`${name} image`} src={BASE_UNSPLASH_URL(_id)} />
-      <div className="flex-center" style={{ width: '100%' }}>
+      <div
+        style={{
+          width: '100%',
+          display: 'flex',
+          alignContent: 'space-between',
+        }}
+      >
         <h2 className="sub-heading">{name}</h2>
         <p className={classes['date']}>
           created <span>{transformedDate.toDateString()}</span>
