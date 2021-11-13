@@ -1,41 +1,43 @@
-import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
+import { useState } from 'react';
+import { MapContainer, TileLayer, Marker, Popup, useMap } from 'react-leaflet';
+import * as ELG from 'esri-leaflet-geocoder';
 import 'leaflet/dist/leaflet.css';
-
-import L from 'leaflet';
-
-// The markers are not working unfortunately :( ...
-delete L.Icon.Default.prototype._getIconUrl;
-
-L.Icon.Default.mergeOptions({
-  iconRetinaUrl: require('leaflet/dist/images/marker-icon-2x.png'),
-  iconUrl: require('leaflet/dist/images/marker-icon.png'),
-  shadowUrl: require('leaflet/dist/images/marker-shadow.png'),
-});
+import 'leaflet-defaulticon-compatibility/dist/leaflet-defaulticon-compatibility.css';
+import 'leaflet-defaulticon-compatibility';
 
 import classes from './styled.module.css';
 
-const Map = ({ children, className, ...rest }) => {
-  let mapClassName = classes.map;
+const Map = ({ className, address, ...rest }) => {
+  const position = [53.35, 18.8];
+  const [latValue, setLatValue] = useState('');
+  const [lngValue, setLngValue] = useState('');
 
-  if (className) {
-    mapClassName = `${mapClassName} ${className}`;
+  function Geocoder({ address }) {
+    const map = useMap();
+
+    ELG.geocode()
+      .text(address)
+      .run((err, results, response) => {
+        const { lat, lng } = results.results[0].latlng;
+        setLatValue(lat);
+        setLngValue(lng);
+        map.setView([lat, lng], 14);
+      });
+
+    return null;
   }
 
   return (
-    <MapContainer
-      zoom={14}
-      center={[38.907132, -77.036546]}
-      className={mapClassName}
-      {...rest}
-    >
+    <MapContainer zoom={14} center={position} className={classes.map} {...rest}>
       <TileLayer
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
       />
-      <Marker position={[51.505, -0.09]}>
-        <Popup>
-          A pretty CSS3 popup. <br /> Easily customizable.
-        </Popup>
+
+      <Geocoder address={address} />
+
+      <Marker position={[latValue, lngValue]} draggable={true} animate={true}>
+        <Popup>This is my address :D</Popup>
       </Marker>
     </MapContainer>
   );

@@ -11,9 +11,11 @@
   "dependencies": {
     "@apollo/client": "^3.4.17",
     "apollo-server-micro": "^3.5.0",
-    "esri-leaflet-geocoder": "^3.1.1",
+    "esri-leaflet-geocoder": "2.3.3",
     "graphql": "^15.7.2",
     "leaflet": "^1.7.1",
+    "leaflet-defaulticon-compatibility": "^0.1.1",
+    "leaflet-geosearch": "^3.6.0",
     "micro-cors": "^0.1.1",
     "mongodb": "^4.1.4",
     "next": "12.0.3",
