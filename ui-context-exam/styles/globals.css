@@ -133,3 +133,8 @@ body {
   color: var(--black-color);
 }
 /* ------------------------------ End React-Datepicker Override ------------------------------- */
+
+.homeMap {
+  width: 100%;
+  height: 20rem;
+}

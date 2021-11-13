@@ -1,8 +1,11 @@
 import { useState, useEffect } from 'react';
+import dynamic from 'next/dynamic';
 
 import Input from '../../../UI/Input';
 import Button from '../../../UI/Button';
 import DateInput from '../../../UI/DateInput';
+
+const MapNoSSR = dynamic(() => import('../../../UI/Map'), { ssr: false });
 
 import classes from './styled.module.css';
 
@@ -48,7 +51,43 @@ const EditUserForm = ({ savedUser, onCancel, onSubmit }) => {
     <>
       <h1 className="heading">Edit user</h1>
       <div className="flex-center" style={{ marginTop: '64.5px' }}>
-        <div className={classes['map-wrapper']}></div>
+        <div
+          style={{
+            width: '518px',
+            height: '450px',
+            borderRadius: '8px',
+            flex: 1,
+            marginRight: '60px',
+          }}
+        >
+          <MapNoSSR className="homeMap">
+            {({ TileLayer, Marker, Popup }) => (
+              <>
+                <TileLayer
+                  url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+                  attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+                />
+                <Marker position={DEFAULT_CENTER}>
+                  <Popup>
+                    A pretty CSS3 popup. <br /> Easily customizable.
+                  </Popup>
+                </Marker>
+              </>
+            )}
+          </MapNoSSR>
+
+          {/* <MyAppNoSSR
+            customstyles={{
+              width: '518px',
+              height: '336px',
+              borderRadius: '8px',
+              flex: 1,
+              marginRight: '60px',
+            }}
+          /> */}
+        </div>
+
+        {/* <div className={classes['map-wrapper']}></div> */}
         <div className={classes['input-group']}>
           <Input
             label="Name"
