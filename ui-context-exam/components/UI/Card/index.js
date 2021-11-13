@@ -12,6 +12,8 @@ const Card = ({
   openUpdateModal,
   deleteUserHandler,
 }) => {
+  const transformedDate = new Date(+createdAt);
+
   return (
     <div className={`flex-column ${classes.card}`}>
       <div className={classes['card-actions']}>
@@ -19,7 +21,13 @@ const Card = ({
         <FaTrash onClick={deleteUserHandler} />
       </div>
       <img alt={`${name} image`} src={BASE_UNSPLASH_URL(_id)} />
-      <h2 className="sub-heading">{name}</h2>
+      <div className="flex-center" style={{ width: '100%' }}>
+        <h2 className="sub-heading">{name}</h2>
+        <p className={classes['date']}>
+          created <span>{transformedDate.toDateString()}</span>
+        </p>
+      </div>
+
       <p className="description">{description}</p>
     </div>
   );

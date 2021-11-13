@@ -21,14 +21,14 @@ const Map = ({ className, address, ...rest }) => {
         const { lat, lng } = results.results[0].latlng;
         setLatValue(lat);
         setLngValue(lng);
-        map.setView([lat, lng], 14);
+        map.setView([lat, lng], 15);
       });
 
     return null;
   }
 
   return (
-    <MapContainer zoom={14} center={position} className={classes.map} {...rest}>
+    <MapContainer zoom={15} center={position} className={classes.map} {...rest}>
       <TileLayer
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
