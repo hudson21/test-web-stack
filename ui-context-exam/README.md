@@ -23,6 +23,20 @@ If you want to see the components declared on Storybook run the following comman
 npm run storybook
 ```
 
+## E2E Tests with Cypress
+
+If you want to see the E2E Tests you need to run the following command:
+```bash
+npm run test
+```
+
+## Unit test with Jest
+Run the following command
+```bash
+npm run jest
+```
+
+
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
 ## How the App was designed (Client)
