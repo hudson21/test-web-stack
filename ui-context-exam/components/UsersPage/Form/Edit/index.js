@@ -124,6 +124,7 @@ const EditUserForm = ({ savedUser, onCancel, onSubmit }) => {
           onClick={updateUserHandler}
           customstyles={{ marginRight: '62px' }}
           data-test="update-user-button"
+          disabled={!name || !address || !description || !dob}
         />
         <Button value="Cancel" onClick={onCancel} />
       </div>

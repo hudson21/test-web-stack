@@ -85,6 +85,7 @@ const CreateUserForm = ({ onSubmit, onCancel }) => {
           value="Save"
           onClick={createUserHandler}
           customstyles={{ marginRight: '62px' }}
+          disabled={!name || !address || !description || !dob}
         />
         <Button
           value="Cancel"
