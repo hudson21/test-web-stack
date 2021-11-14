@@ -32,3 +32,14 @@
     width: 100%;
   }
 }
+
+@media (max-width: 470px) {
+  .actions-wrapper {
+    justify-content: space-between;
+  }
+
+  .actions-wrapper button:first-child {
+    /* I am using important just to override the inline style I set in the Button itself */
+    margin-right: 20px !important;
+  }
+}
