@@ -89,9 +89,3 @@ In an application there will be always optimization opportunities to get you app
 5. In the case of the client side, there is always the possibility to use React Context to avoid `prop chaining` or use `Redux` if you have an application you think will get bigger in the future.
 6. Another feature which could be beneficial if you have a big app is `Lazy Loading`. When you have different views, you dont need to load them all at once. You can implement `Lazy Loading` to load every page according to the end user needs.
 
-## Things to consider for this application
-- This application has been one of the most ambitious I have developed so far because all the tech stack involved from the Backend to the Frontend. I see this application as a good practice model or structur
-
-
-
-
