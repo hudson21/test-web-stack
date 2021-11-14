@@ -51,7 +51,10 @@ const EditUserForm = ({ savedUser, onCancel, onSubmit }) => {
   return (
     <>
       <h1 className="heading">Edit user</h1>
-      <div className="flex-center" style={{ marginTop: '64.5px' }}>
+      <div
+        className="flex-center"
+        style={{ marginTop: '64.5px', flexWrap: 'wrap' }}
+      >
         {savedAddress && (
           <div className={classes['map-wrapper']}>
             <MapNoSSR address={savedAddress}>

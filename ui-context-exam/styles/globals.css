@@ -138,6 +138,21 @@ body {
 }
 /* ------------------------------ End React-Datepicker Override ------------------------------- */
 
-/* ------------------------------ Not Found Page Styles ------------------------------- */
+/* ------------------------------ Responsive ------------------------------- */
 
-/* ------------------------------ End of Not Found Page Styles ------------------------------- */
+@media (max-width: 800px) {
+  body {
+    padding: 20px;
+  }
+
+  .flex-center {
+    justify-content: center;
+  }
+
+  .heading {
+    margin-right: 45px;
+    margin-bottom: 15px;
+  }
+}
+
+/* ------------------------------ End of Responsive ------------------------------- */

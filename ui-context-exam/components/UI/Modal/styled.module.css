@@ -42,3 +42,10 @@
   transform: scale(1);
   transition: opacity 200ms 500ms ease, transform 350ms 500ms ease;
 }
+
+@media (max-width: 800px) {
+  .modal {
+    width: auto;
+    margin: 20px;
+  }
+}

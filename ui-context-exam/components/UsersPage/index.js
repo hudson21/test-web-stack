@@ -36,7 +36,7 @@ const UsersPage = () => {
   });
 
   const router = useRouter();
-  const id = router.query.id;
+  const limit = router.query.limit;
 
   const {
     loading,
@@ -44,7 +44,7 @@ const UsersPage = () => {
     data: getUserResponse,
     refetch,
   } = useQuery(GET_USERS, {
-    variables: { limit: id ? id * 6 : 1 * 6 },
+    variables: { limit: limit ? limit * 6 : 1 * 6 },
     notifyOnNetworkStatusChange: true,
     fetchPolicy: 'cache-and-network',
   });
@@ -81,7 +81,7 @@ const UsersPage = () => {
 
   const onSearchHandler = (value) => {
     setSearchValue(value);
-    refetch({ limit: id * 6, filter: searchValue });
+    refetch({ limit: limit * 6, filter: searchValue });
   };
 
   const openUpdateModal = (user) => {
@@ -126,7 +126,7 @@ const UsersPage = () => {
 
   const loadMoreUsers = () => {
     saveScrollPosition();
-    router.push(`/${+id + 1}`);
+    router.push(`/${+limit + 1}`, undefined, { shallow: true });
   };
 
   if (
@@ -193,7 +193,7 @@ const UsersPage = () => {
           />
 
           <Button
-            disabled={id * 6 >= getUsersLengthResponse?.getUsersLength}
+            disabled={limit * 6 >= getUsersLengthResponse?.getUsersLength}
             value="Load More"
             isPrimary
             onClick={loadMoreUsers}

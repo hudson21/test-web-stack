@@ -41,14 +41,18 @@
 }
 
 .card h2 {
+  width: 100%;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+  align-self: flex-start;
+}
+
+.card:hover h2 {
   width: 160px;
   white-space: nowrap;
   display: block;
   overflow: hidden;
   text-overflow: ellipsis;
-  text-transform: uppercase;
-  margin-bottom: 8px;
-  align-self: flex-start;
 }
 
 .card p {
@@ -71,4 +75,10 @@
 
 .card:hover .date span {
   color: var(--red-color);
+}
+
+@media (max-width: 800px) {
+  .card {
+    padding: 20px;
+  }
 }

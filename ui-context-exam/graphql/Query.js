@@ -6,11 +6,11 @@ export const Query = {
       const documents = await getAllDocuments(
         client,
         'users',
-        { _id: -1 }, // Descending Order
+        { updatedAt: -1 }, // Descending Order
         {},
         limit
       );
-        
+
       if (filter) {
         return documents.filter(({ _id, name, address, description }) => {
           const transformedFilter = filter.toLowerCase();
