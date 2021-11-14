@@ -22,7 +22,7 @@ describe('<Input />', () => {
   });
 
   it('Should render value, label passed as props', () => {
-    const input = document.querySelector("input[data-test='input']");
+    const input = document.querySelector("input[data-test='input-search']");
     const label = document.querySelector("label[data-test='input-label']");
 
     expect(input.value).toBe(expectedProps.value);
@@ -30,7 +30,7 @@ describe('<Input />', () => {
   });
 
   it('Should change value after triggering onChange event', () => {
-    const input = document.querySelector("input[data-test='input']");
+    const input = document.querySelector("input[data-test='input-search']");
     fireEvent.change(input, { target: { value: 'Hello' } });
     expect(input.value).toBe('Hello');
   });

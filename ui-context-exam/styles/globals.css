@@ -48,6 +48,7 @@ html {
 body {
   padding: 183px 236px;
   background: var(--body-color);
+  overflow-x: hidden;
 }
 
 .flex-center {
@@ -167,16 +168,14 @@ body {
   }
 }
 
-@media (max-width: 480px) {
+@media (max-width: 500px) {
   .add-more-btn {
     bottom: 30px;
     right: 30px;
   }
-}
 
-@media (max-width: 480px) {
-  input[data-test='search-input'] {
-    width: 330px;
+  input[data-test='input-search'] {
+    width: 100%;
   }
 }
 

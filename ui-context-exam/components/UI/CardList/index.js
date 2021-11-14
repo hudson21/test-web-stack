@@ -1,4 +1,5 @@
 import Card from '../Card';
+import classes from './Styled.module.css';
 
 import { FaRegSmileBeam } from 'react-icons/fa';
 
@@ -6,7 +7,7 @@ const CardList = ({ users, openUpdateModal, deleteUserHandler }) => {
   return (
     <>
       {users.length > 0 ? (
-        <div className="flex-center" style={{ flexWrap: 'wrap' }}>
+        <div className={classes['card-list']}>
           {users.map((user) => (
             <Card
               key={user._id}

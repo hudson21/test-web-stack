@@ -20,7 +20,7 @@ const Input = ({
       )}
       <input
         {...rest}
-        data-test="input"
+        data-test="input-search"
         className={classes.input}
         style={{ width: fullwidth ? '100%' : '' }}
         onChange={(e) => onChange(e.target.value)}
