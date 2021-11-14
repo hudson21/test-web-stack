@@ -10,7 +10,8 @@
     "storybook": "start-storybook -s ./public -p 4000",
     "build-storybook": "build-storybook",
     "cypress-open": "cypress open",
-    "test": "start-server-and-test dev 3000 cypress-open"
+    "test": "start-server-and-test dev 3000 cypress-open",
+    "jest": "jest"
   },
   "dependencies": {
     "@apollo/client": "^3.4.17",
@@ -39,10 +40,12 @@
     "@storybook/manager-webpack5": "^6.3.12",
     "@storybook/react": "^6.3.12",
     "@types/leaflet": "^1.7.5",
+    "babel-jest": "^27.3.1",
     "babel-loader": "^8.2.3",
     "cypress": "^9.0.0",
     "eslint": "7.32.0",
     "eslint-config-next": "12.0.3",
+    "jest": "^27.3.1",
     "start-server-and-test": "^1.14.0"
   }
 }

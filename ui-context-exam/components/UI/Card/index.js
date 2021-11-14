@@ -16,10 +16,10 @@ const Card = ({
   const transformedDate = new Date(+createdAt);
 
   return (
-    <div className={`flex-column ${classes.card}`}>
+    <div className={`flex-column ${classes.card}`} data-test="card">
       <div className={classes['card-actions']}>
-        <FaPen onClick={openUpdateModal} />
-        <FaTrash onClick={deleteUserHandler} />
+        <FaPen onClick={openUpdateModal} data-test="update-action" />
+        <FaTrash onClick={deleteUserHandler} data-test="delete-action" />
       </div>
       <Avatar name={name} id={_id} />
       <div

@@ -82,6 +82,7 @@ const EditUserForm = ({ savedUser, onCancel, onSubmit }) => {
             onChange={setName}
             fullwidth="true"
             customstyles={{ marginBottom: '36px', width: '100%' }}
+            data-test="edit-user-name"
           />
 
           <DateInput
@@ -122,6 +123,7 @@ const EditUserForm = ({ savedUser, onCancel, onSubmit }) => {
           value="Save"
           onClick={updateUserHandler}
           customstyles={{ marginRight: '62px' }}
+          data-test="update-user-button"
         />
         <Button value="Cancel" onClick={onCancel} />
       </div>

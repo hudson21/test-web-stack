@@ -3,16 +3,14 @@ import PropTypes from 'prop-types';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 
-const DateInput = (props) => {
-  const { selected, onChange, label, customstyles } = props;
-
+const DateInput = ({ selected, onChange, label, customstyles, ...rest }) => {
   return (
     <div style={{ ...customstyles }}>
       {label && <label className="label">{label}</label>}
       <DatePicker
         onChange={(date) => onChange(date)}
         selected={selected}
-        {...props}
+        {...rest}
       />
     </div>
   );

@@ -2,9 +2,17 @@ import PropTypes from 'prop-types';
 
 import classes from './styled.module.css';
 
-const Button = ({ value, onClick, disabled, isPrimary, customstyles }) => {
+const Button = ({
+  value,
+  onClick,
+  disabled,
+  isPrimary,
+  customstyles,
+  ...rest
+}) => {
   return (
     <button
+      {...rest}
       style={{ ...customstyles }}
       className={`${classes.button} ${
         isPrimary ? classes['primary-button'] : classes['secondary-button']

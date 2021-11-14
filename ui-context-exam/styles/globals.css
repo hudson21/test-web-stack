@@ -140,6 +140,13 @@ body {
 
 /* ------------------------------ Responsive ------------------------------- */
 
+@media (max-width: 1000px) {
+  .add-more-btn {
+    bottom: 50px;
+    right: 50px;
+  }
+}
+
 @media (max-width: 800px) {
   body {
     padding: 20px;
@@ -152,6 +159,24 @@ body {
   .heading {
     margin-right: 45px;
     margin-bottom: 15px;
+  }
+
+  .add-more-btn {
+    bottom: 50px;
+    right: 50px;
+  }
+}
+
+@media (max-width: 480px) {
+  .add-more-btn {
+    bottom: 30px;
+    right: 30px;
+  }
+}
+
+@media (max-width: 480px) {
+  input[data-test='search-input'] {
+    width: 330px;
   }
 }
 

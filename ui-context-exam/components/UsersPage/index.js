@@ -177,6 +177,7 @@ const UsersPage = () => {
           placeholder="Search..."
           onChange={onSearchHandler}
           value={searchValue}
+          data-test="search-input"
         />
       </div>
 
@@ -187,25 +188,24 @@ const UsersPage = () => {
       ) : (
         <>
           <CardList
-            users={getUserResponse.users}
+            users={getUserResponse?.users}
             openUpdateModal={openUpdateModal}
             deleteUserHandler={openDeleteUserModal}
           />
-
-          <Button
-            disabled={limit * 6 >= getUsersLengthResponse?.getUsersLength}
-            value="Load More"
-            isPrimary
-            onClick={loadMoreUsers}
-          />
-          <div
-            className="add-more-btn"
-            onClick={() => setShowCreateModal(true)}
-          >
-            <FaPlus />
-          </div>
+          {getUserResponse?.users.length > 0 && (
+            <Button
+              disabled={limit * 6 >= getUsersLengthResponse?.getUsersLength}
+              value="Load More"
+              isPrimary
+              onClick={loadMoreUsers}
+            />
+          )}
         </>
       )}
+
+      <div className="add-more-btn" onClick={() => setShowCreateModal(true)}>
+        <FaPlus />
+      </div>
     </div>
   );
 };
