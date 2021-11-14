@@ -1,5 +1,5 @@
 import Card from '../Card';
-import classes from './Styled.module.css';
+import classes from './styled.module.css';
 
 import { FaRegSmileBeam } from 'react-icons/fa';
 
