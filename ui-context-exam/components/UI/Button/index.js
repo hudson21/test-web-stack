@@ -15,10 +15,13 @@ const Button = ({
       {...rest}
       style={{ ...customstyles }}
       className={`${classes.button} ${
-        isPrimary ? classes['primary-button'] : classes['secondary-button']
+        isPrimary
+          ? `${classes['primary-button']} primary-button-class`
+          : `${classes['secondary-button']} secondary-button-class`
       }`}
       onClick={onClick}
       disabled={disabled}
+      data-test={`${value}-button`}
     >
       {value}
     </button>

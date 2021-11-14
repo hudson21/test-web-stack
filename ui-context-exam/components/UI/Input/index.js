@@ -13,9 +13,14 @@ const Input = ({
 }) => {
   return (
     <div className="flex-column" style={{ ...customstyles }}>
-      {label && <label className="label">{label}</label>}
+      {label && (
+        <label className="label" data-test="input-label">
+          {label}
+        </label>
+      )}
       <input
         {...rest}
+        data-test="input"
         className={classes.input}
         style={{ width: fullwidth ? '100%' : '' }}
         onChange={(e) => onChange(e.target.value)}
