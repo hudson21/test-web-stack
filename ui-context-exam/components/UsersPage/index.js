@@ -141,7 +141,11 @@ const UsersPage = () => {
 
   return (
     <div className="flex-column">
-      <Modal show={showUpdateModal} onClose={closeUpdateModal}>
+      <Modal
+        data-test="edit-user-modal"
+        show={showUpdateModal}
+        onClose={closeUpdateModal}
+      >
         <EditUserForm
           savedUser={selectedUser}
           onCancel={closeUpdateModal}
